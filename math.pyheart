@@ -1,0 +1,50 @@
+import math
+from turtle import *
+import time
+
+def hearta(k):
+    return 15 * math.sin(k) ** 3
+
+def heartb(k):
+    return 12 * math.cos(k) - 5 * \
+           math.cos(2 * k) - 2 * \
+           math.cos(3 * k) - \
+           math.cos(4 * k)
+
+# Set up the screen and turtles
+screen = Screen()
+screen.bgcolor("black")
+
+# Create a turtle for displaying text
+text_turtle = Turtle()
+text_turtle.hideturtle()
+text_turtle.penup()
+text_turtle.color("purple")
+
+# Create a turtle for drawing the heart
+heart_turtle = Turtle()
+heart_turtle.speed(0)  # Fastest drawing speed
+heart_turtle.color("#ff6eb6")
+heart_turtle.penup()
+
+# Display each text one after another
+def display_text(message, y_offset, font, color):
+    text_turtle.color(color)
+    text_turtle.goto(0, y_offset)
+    text_turtle.write(message, align="center", font=font)
+    screen.update()  # Ensure the screen updates immediately
+    time.sleep(1)  # Short pause for text visibility
+
+# Display texts in sequence
+display_text("Semangat", 50, ("Comic Sans MS", 25, "bold"), "purple")
+display_text("kill everyone", 0, ("Comic Sans MS", 25, "bold"), "red")
+display_text("pls", -50, ("Calibri", 25, "bold"), "white")
+display_text(":)", -100, ("Calibri", 25, "italic"), "yellow")
+
+# Draw the heart shape after text is displayed
+heart_turtle.goto(hearta(0) * 20, heartb(0) * 20)
+heart_turtle.pendown()
+for i in range(6000):
+    heart_turtle.goto(hearta(i) * 20, heartb(i) * 20)
+
+done()
