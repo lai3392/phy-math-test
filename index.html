@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Drawing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="text purple" style="font-family: 'Comic Sans MS'; font-size: 25px; font-weight: bold;">Semangat</div>
+    <div class="text red" style="font-family: 'Comic Sans MS'; font-size: 25px; font-weight: bold;">kill everyone</div>
+    <div class="text white" style="font-family: 'Calibri'; font-size: 25px;">pls</div>
+    <div class="text yellow" style="font-family: 'Calibri'; font-size: 25px; font-style: italic;">:)</div>
+
+    <svg width="400" height="400" viewBox="0 0 500 500">
+        <path class="heart" id="heartPath"></path>
+    </svg>
+
+    <script>
+        function hearta(k) {
+            return 15 * Math.sin(k) ** 3;
+        }
+
+        function heartb(k) {
+            return 12 * Math.cos(k) - 5 * Math.cos(2 * k) - 2 * Math.cos(3 * k) - Math.cos(4 * k);
+        }
+
+        const heartPath = document.getElementById('heartPath');
+        let pathData = '';
+
+        for (let i = 0; i <= 6000; i++) {
+            const x = hearta(i / 100) * 20 + 250;
+            const y = heartb(i / 100) * 20 + 250;
+            if (i === 0) {
+                pathData += `M ${x} ${y}`;
+            } else {
+                pathData += ` L ${x} ${y}`;
+            }
+        }
+
+        heartPath.setAttribute('d', pathData);
+    </script>
+</body>
+</html>
